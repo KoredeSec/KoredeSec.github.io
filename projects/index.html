@@ -1,0 +1,226 @@
+﻿﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Projects - Ibrahim Yusuf | KoredeSec</title>
+  <meta name="description"
+    content="Projects by Ibrahim Yusuf (KoredeSec): a cloud-LLM risk assessment model with an interactive Security Posture Explorer, a Microsoft Sentinel home SOC, a threat-intel aggregator, StackDeployer, and a Linux VPC builder.">
+  <link rel="canonical" href="https://koredesec.me/projects/">
+  <meta property="og:title" content="Projects | Ibrahim Yusuf - KoredeSec">
+  <meta property="og:description"
+    content="Cloud-LLM risk assessment, a Sentinel home SOC, a threat-intel aggregator, and more from KoredeSec.">
+  <meta property="og:url" content="https://koredesec.me/projects/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Projects | Ibrahim Yusuf - KoredeSec">
+  <meta name="twitter:description"
+    content="Cloud-LLM risk assessment, a Sentinel home SOC, a threat-intel aggregator, and more from KoredeSec.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+      var stored = null;
+      try { stored = localStorage.getItem('koredesec-theme'); } catch (e) {}
+      var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
+</head>
+
+<body class="pre-hero">
+
+  <nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">KoredeSec</a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span class="nav-toggle-line" aria-hidden="true"></span>
+        <span class="nav-toggle-line" aria-hidden="true"></span>
+      </button>
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="../about/index.html">About</a></li>
+          <li><a href="../experience/index.html">Experience</a></li>
+          <li><a href="../projects/index.html" aria-current="page">Projects</a></li>
+          <li><a href="../leadership/index.html">Leadership</a></li>
+          <li><a href="../writing/index.html">Writing</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="theme-dot" aria-hidden="true"></span>
+          <span id="theme-label">Dark</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <header class="page-head">
+      <div class="container">
+        <p class="page-kicker hero-line" data-line="1">projects / 03</p>
+        <h1 class="hero-line" data-line="2">Projects</h1>
+        <p class="page-lede hero-line" data-line="3">Attack, detect, harden. The thesis project sits first, and the
+          interactive Security Posture Explorer below is built from it.</p>
+      </div>
+    </header>
+
+    <section class="projects" id="projects">
+      <div class="container container--wide">
+
+        <div class="spotlight" id="project-thesis" data-reveal="zoom">
+          <p class="spotlight-label"><span class="severity-mark" aria-hidden="true"></span>BSc Thesis - Original Research</p>
+          <h3>Risk Assessment Model for Cloud-Based LLM</h3>
+          <p class="spotlight-stack">AWS Bedrock (Llama 3.1 8B) · EC2 · OpenSearch · Flask · LangChain · IAM · CloudTrail</p>
+          <div class="spotlight-desc">
+            <p>Deployed a RAG chatbot on AWS Bedrock and built a 35-test-case security framework spanning LLM, RAG, and
+              cloud layers. Shipped 14 hardening controls, raising the Security Posture Score with 100% vulnerability
+              remediation.</p>
+          </div>
+
+          <div class="posture-widget" id="posture-widget">
+            <div class="posture-head">
+              <p class="posture-title">Security Posture Explorer</p>
+              <p class="posture-sub">Press apply to run the 14 hardening controls against the stack.</p>
+            </div>
+            <div class="posture-readout">
+              <div class="posture-score" aria-live="polite">
+                <span class="posture-num-outer"><span id="score-value">67.09</span><span class="posture-pct">%</span></span>
+              </div>
+              <div class="posture-dial" role="presentation">
+                <span class="posture-bar" id="posture-bar" style="--score:67.09"></span>
+              </div>
+              <p class="score-label" id="score-label">Baseline Security Posture Score</p>
+              <p class="vuln-stat" id="vuln-stat">Vulnerabilities present across 3 layers</p>
+            </div>
+
+            <div class="controls-grid" id="controls-grid">
+              <div class="control-col">
+                <h5>LLM Layer</h5>
+                <div class="control-item" data-tooltip="Blocked adversarial prompts attempting to bypass system instructions" title="Blocked adversarial prompts attempting to bypass system instructions"><span class="dot" aria-hidden="true"></span>Prompt injection filtering</div>
+                <div class="control-item" data-tooltip="Prevented extraction of training data through crafted queries" title="Prevented extraction of training data through crafted queries"><span class="dot" aria-hidden="true"></span>Data leakage prevention</div>
+                <div class="control-item" data-tooltip="Added rate limiting and output length restrictions" title="Added rate limiting and output length restrictions"><span class="dot" aria-hidden="true"></span>Output sanitization</div>
+                <div class="control-item" data-tooltip="Validated model inputs against defined schema" title="Validated model inputs against defined schema"><span class="dot" aria-hidden="true"></span>Input validation rules</div>
+                <div class="control-item" data-tooltip="Restricted model to approved knowledge domains" title="Restricted model to approved knowledge domains"><span class="dot" aria-hidden="true"></span>Scope restriction</div>
+              </div>
+              <div class="control-col">
+                <h5>RAG Layer</h5>
+                <div class="control-item" data-tooltip="Enforced document-level access control on retrievals" title="Enforced document-level access control on retrievals"><span class="dot" aria-hidden="true"></span>Retrieval access control</div>
+                <div class="control-item" data-tooltip="Validated retrieved context before injection into prompts" title="Validated retrieved context before injection into prompts"><span class="dot" aria-hidden="true"></span>Context validation</div>
+                <div class="control-item" data-tooltip="Encrypted document store at rest and in transit" title="Encrypted document store at rest and in transit"><span class="dot" aria-hidden="true"></span>Knowledge base encryption</div>
+                <div class="control-item" data-tooltip="Logged all retrieval queries for audit purposes" title="Logged all retrieval queries for audit purposes"><span class="dot" aria-hidden="true"></span>Query audit logging</div>
+              </div>
+              <div class="control-col">
+                <h5>Cloud Layer</h5>
+                <div class="control-item" data-tooltip="Applied least-privilege IAM policies to all service roles" title="Applied least-privilege IAM policies to all service roles"><span class="dot" aria-hidden="true"></span>IAM least privilege</div>
+                <div class="control-item" data-tooltip="Enabled CloudTrail logging across all regions" title="Enabled CloudTrail logging across all regions"><span class="dot" aria-hidden="true"></span>CloudTrail monitoring</div>
+                <div class="control-item" data-tooltip="Restricted API access to VPC endpoints only" title="Restricted API access to VPC endpoints only"><span class="dot" aria-hidden="true"></span>Network segmentation</div>
+                <div class="control-item" data-tooltip="Rotated credentials on automated schedule" title="Rotated credentials on automated schedule"><span class="dot" aria-hidden="true"></span>Secrets rotation</div>
+                <div class="control-item" data-tooltip="Configured automated alerting for security events" title="Configured automated alerting for security events"><span class="dot" aria-hidden="true"></span>Incident alerting</div>
+              </div>
+            </div>
+
+            <div class="posture-actions">
+              <button class="btn-harden" id="btn-harden" type="button">Apply hardening controls</button>
+              <button class="btn-reset" id="btn-reset" type="button" disabled>Reset to baseline</button>
+            </div>
+          </div>
+
+          <a class="spotlight-link" href="https://github.com/KoredeSec/cloud-llm-risk-assessment-model"
+            target="_blank" rel="noopener noreferrer">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7" />
+              <path d="M7 7h10v10" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="project-list" data-reveal="stagger">
+
+          <article class="project-item stagger-item" id="project-sentinel">
+            <span class="project-index">SOC Lab</span>
+            <div>
+              <h3 class="project-name">Microsoft Sentinel Home SOC Lab</h3>
+              <p class="project-desc">Azure VM as a honeypot, forwarded live attack logs to Sentinel, built a real-time
+                attack map. Created automated incident response workflows using Logic Apps; alerts fired within minutes.
+                Wrote KQL rules targeting failed RDP logins (Event ID 4625), enriched attacker IPs with GeoIP watchlist
+                data, automated metadata logging to a custom Sentinel table via Logic App.</p>
+            </div>
+            <a class="project-link" href="https://github.com/KoredeSec/azure-sentinel-home-soc" target="_blank"
+              rel="noopener noreferrer">GitHub ↗</a>
+          </article>
+
+          <article class="project-item stagger-item" id="project-threatintel">
+            <span class="project-index">Threat Intel</span>
+            <div>
+              <h3 class="project-name">Threat-Intel Aggregator</h3>
+              <p class="project-desc">Python/Flask tool pulling IOCs from OTX, FeodoTracker, AbuseIPDB, and VirusTotal;
+                deduplicates across feeds, geolocates threats on an interactive map. Integrated Slack and email
+                alerting: live IOC notifications with zero manual intervention. Reduced IOC review time by consolidating
+                4 separate threat feeds into a single normalized dashboard.</p>
+            </div>
+            <a class="project-link" href="https://github.com/KoredeSec/threat-intel-aggregator" target="_blank"
+              rel="noopener noreferrer">GitHub ↗</a>
+          </article>
+
+          <article class="project-item stagger-item" id="project-stackdeployer">
+            <span class="project-index">DevOps</span>
+            <div>
+              <h3 class="project-name">StackDeployer</h3>
+              <p class="project-desc">Production-grade bash script for the HNG DevOps Stage 1 challenge - automates
+                dependency installation, user provisioning, vulnerability scanning, service enabling, and a security
+                verification suite. Uses GitHub Actions to validate the script across fresh Ubuntu, Debian, and Kali
+                images, then deploys a hardened Ubuntu VM.</p>
+            </div>
+            <a class="project-link" href="https://github.com/KoredeSec/stackdeployer" target="_blank"
+              rel="noopener noreferrer">GitHub ↗</a>
+          </article>
+
+          <article class="project-item stagger-item" id="project-vpc">
+            <span class="project-index">Cloud</span>
+            <div>
+              <h3 class="project-name">Linux VPC Builder</h3>
+              <p class="project-desc">Scripted a mini cloud network on Linux - build a virtual private cloud, bind virtual
+                NICs, configure VLAN trunking, assign static IPs, craft IAM-style isolation, and simulate firewall rules
+                and encrypted tunnels. The full networking stack runs on loopback interfaces, no cloud provider or paid
+                tools required.</p>
+            </div>
+            <a class="project-link" href="https://github.com/KoredeSec/Linux-VPC-Builder" target="_blank"
+              rel="noopener noreferrer">GitHub ↗</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <ul class="footer-links">
+        <li><a href="mailto:ibrahim.a.yusuf741@gmail.com">ibrahim.a.yusuf741@gmail.com</a></li>
+        <li><a href="https://github.com/KoredeSec" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium</a></li>
+        <li><a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank"
+          rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://x.com/KoredeSec" target="_blank" rel="noopener noreferrer">X</a></li>
+        <li><a href="https://linktr.ee/KoredeSec" target="_blank" rel="noopener noreferrer">Linktree</a></li>
+      </ul>
+      <p class="footer-note">© 2026 <a href="https://koredesec.me" class="brand">KoredeSec</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

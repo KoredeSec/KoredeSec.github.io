@@ -1,0 +1,191 @@
+﻿﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Experience - Ibrahim Yusuf | KoredeSec</title>
+  <meta name="description"
+    content="Internship and training history of Ibrahim Yusuf (KoredeSec): Security Engineering at Cyblack, SOC analysis with Cyblack Academy, and the AWS re/Start program.">
+  <link rel="canonical" href="https://koredesec.me/experience/">
+  <meta property="og:title" content="Experience | Ibrahim Yusuf - KoredeSec">
+  <meta property="og:description"
+    content="Security engineering, SOC analysis, and AWS re/Start: the training history behind KoredeSec.">
+  <meta property="og:url" content="https://koredesec.me/experience/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Experience | Ibrahim Yusuf - KoredeSec">
+  <meta name="twitter:description"
+    content="Security engineering, SOC analysis, and AWS re/Start: the training history behind KoredeSec.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+      var stored = null;
+      try { stored = localStorage.getItem('koredesec-theme'); } catch (e) {}
+      var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
+</head>
+
+<body class="pre-hero">
+
+  <nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">KoredeSec</a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span class="nav-toggle-line" aria-hidden="true"></span>
+        <span class="nav-toggle-line" aria-hidden="true"></span>
+      </button>
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="../about/index.html">About</a></li>
+          <li><a href="../experience/index.html" aria-current="page">Experience</a></li>
+          <li><a href="../projects/index.html">Projects</a></li>
+          <li><a href="../leadership/index.html">Leadership</a></li>
+          <li><a href="../writing/index.html">Writing</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="theme-dot" aria-hidden="true"></span>
+          <span id="theme-label">Dark</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <header class="page-head">
+      <div class="container">
+        <p class="page-kicker hero-line" data-line="1">experience / 02</p>
+        <h1 class="hero-line" data-line="2">Experience</h1>
+        <p class="page-lede hero-line" data-line="3">Three structured roles across detection engineering, SOC
+          operations, and cloud infrastructure.</p>
+      </div>
+    </header>
+
+    <section aria-label="Experience highlights">
+      <div class="container">
+        <div class="stats">
+          <div class="stat" data-reveal="rise">
+            <p class="stat-num"><span class="counter" data-count="40">0</span><span class="counter-suffix">+</span></p>
+            <p class="stat-label">hands-on AWS labs completed</p>
+          </div>
+          <div class="stat" data-reveal="rise">
+            <p class="stat-num"><span class="counter" data-count="30">0</span><span class="counter-suffix">+</span></p>
+            <p class="stat-label">malware samples triaged</p>
+          </div>
+          <div class="stat" data-reveal="rise">
+            <p class="stat-num"><span class="counter" data-count="60">0</span><span class="counter-suffix">+</span></p>
+            <p class="stat-label">IOCs extracted &amp; categorized</p>
+          </div>
+          <div class="stat" data-reveal="rise">
+            <p class="stat-num"><span class="counter" data-count="8">0</span></p>
+            <p class="stat-label">KQL scheduled query rules</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience" id="experience">
+      <div class="container">
+        <div class="exp-list" data-reveal="stagger">
+
+          <article class="exp-item stagger-item">
+            <div class="exp-meta" data-reveal="slide-left">
+              <span class="exp-date">Jan – Apr 2026</span>
+              <span class="exp-location">Remote</span>
+            </div>
+            <div class="exp-details">
+              <h3>Security Engineering Intern</h3>
+              <p class="exp-company">Cyblack Internship</p>
+              <ul class="exp-bullets">
+                <li>Conducted a full penetration test on a live vulnerable banking application (VulnBank) using Burp
+                  Suite; independently discovered and exploited 7 vulnerabilities (SQL injection, JWT manipulation, mass
+                  assignment, race condition, IDOR, XSS, SSRF), mapped to the Cyber Kill Chain</li>
+                <li>Authored 8 KQL Scheduled Query Rules in Microsoft Sentinel covering credential stuffing, phishing
+                  payloads, WannaCry C2, XWorm persistence, and AsyncRAT communications, each mapped to MITRE ATT&amp;CK
+                  with entity mappings for automatic incident enrichment</li>
+                <li>Led Team 7's cloud security sprint: deployed Microsoft Defender for Servers with JIT VM access and a
+                  Logic App playbook for automated incident escalation</li>
+                <li>Authored a Privileged Account Policy (P7S-PAP-01) aligned to ISO/IEC 27002:2022, NYDFS 23 NYCRR
+                  500.07, and PCI-DSS, with MFA enforcement, bastion host access, and a dual-approval Break-Glass
+                  procedure</li>
+                <li>Profiled three government-sector threat actors in OpenCTI using the Diamond Model; extracted and
+                  categorized 60+ IOCs from WannaCry, XWorm, and AsyncRAT malware samples</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="exp-item stagger-item">
+            <div class="exp-meta" data-reveal="slide-left">
+              <span class="exp-date">Sep – Dec 2025</span>
+              <span class="exp-location">Remote</span>
+            </div>
+            <div class="exp-details">
+              <h3>SOC Analyst Intern</h3>
+              <p class="exp-company">Cyblack SOC Academy</p>
+              <ul class="exp-bullets">
+                <li>Performed malware triage on 30+ samples using VirusTotal hash scanning and OSINT enrichment,
+                  producing written IOC reports</li>
+                <li>Ran credentialed Nessus scans across lab environments, triaged findings by CVSS score, drafted
+                  remediation recommendations</li>
+                <li>Automated patch deployment for common CVEs using Ansible playbooks, cutting manual remediation steps
+                </li>
+                <li>Investigated simulated security incidents using SIEM log analysis and threat intelligence feeds (OTX,
+                  AbuseIPDB)</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="exp-item stagger-item">
+            <div class="exp-meta" data-reveal="slide-left">
+              <span class="exp-date">Aug – Nov 2025</span>
+              <span class="exp-location">Remote</span>
+            </div>
+            <div class="exp-details">
+              <h3>Cloud Engineering Trainee</h3>
+              <p class="exp-company">AWS re/Start Program</p>
+              <ul class="exp-bullets">
+                <li>Completed 40+ hands-on labs covering EC2, VPC, S3, CloudTrail, KMS, SNS, and EventBridge</li>
+                <li>Built and documented cloud architecture patterns around least-privilege IAM and audit logging</li>
+                <li>Developed proficiency in CI/CD fundamentals, infrastructure automation, and AWS Well-Architected
+                  Framework principles</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <ul class="footer-links">
+        <li><a href="mailto:ibrahim.a.yusuf741@gmail.com">ibrahim.a.yusuf741@gmail.com</a></li>
+        <li><a href="https://github.com/KoredeSec" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium</a></li>
+        <li><a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank"
+          rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://x.com/KoredeSec" target="_blank" rel="noopener noreferrer">X</a></li>
+        <li><a href="https://linktr.ee/KoredeSec" target="_blank" rel="noopener noreferrer">Linktree</a></li>
+      </ul>
+      <p class="footer-note">© 2026 <a href="https://koredesec.me" class="brand">KoredeSec</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

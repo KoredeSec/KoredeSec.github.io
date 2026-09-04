@@ -1,0 +1,218 @@
+﻿﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Ibrahim Yusuf | Security Engineer - KoredeSec</title>
+  <meta name="description"
+    content="Ibrahim Yusuf (KoredeSec), Security Engineer specializing in cloud security, detection engineering, and DevSecOps.">
+  <link rel="canonical" href="https://koredesec.me/">
+  <meta property="og:title" content="Ibrahim Yusuf | Security Engineer">
+  <meta property="og:description"
+    content="Security Engineer specializing in cloud security, detection engineering, and DevSecOps.">
+  <meta property="og:url" content="https://koredesec.me/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ibrahim Yusuf | Security Engineer">
+  <meta name="twitter:description"
+    content="Security Engineer specializing in cloud security, detection engineering, and DevSecOps.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+      var stored = null;
+      try { stored = localStorage.getItem('koredesec-theme'); } catch (e) {}
+      var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
+</head>
+
+<body class="pre-hero">
+
+  <nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">KoredeSec</a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span class="nav-toggle-line" aria-hidden="true"></span>
+        <span class="nav-toggle-line" aria-hidden="true"></span>
+      </button>
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="about/index.html">About</a></li>
+          <li><a href="experience/index.html">Experience</a></li>
+          <li><a href="projects/index.html">Projects</a></li>
+          <li><a href="leadership/index.html">Leadership</a></li>
+          <li><a href="writing/index.html">Writing</a></li>
+          <li><a href="contact/index.html">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="theme-dot" aria-hidden="true"></span>
+          <span id="theme-label">Dark</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero" id="hero">
+      <div class="container">
+        <p class="hero-id hero-line" data-line="1">/KoredeSec · security engineer</p>
+        <h1 class="hero-name hero-line" data-line="2">Ibrahim Yusuf</h1>
+        <p class="hero-blunt hero-line" data-line="3">I find the ways systems break, then I build the detection that
+          catches the next attempt.</p>
+        <p class="hero-pos hero-line" data-line="4">Security Engineer specializing in cloud security, detection
+          engineering, and DevSecOps.</p>
+        <div class="hero-foot hero-line" data-line="5">
+          <img class="hero-pfp" src="assets/pfp.jpg" alt="Ibrahim Yusuf" width="168" height="168">
+          <p class="hero-socials">
+            <a href="https://github.com/KoredeSec" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank"
+              rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://x.com/KoredeSec" target="_blank" rel="noopener noreferrer">X ↗</a>
+            <a href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium ↗</a>
+            <a href="https://linktr.ee/KoredeSec" target="_blank" rel="noopener noreferrer">Linktree ↗</a>
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== STATS ===== -->
+    <section class="stats-section" aria-label="Headline numbers">
+      <div class="container">
+        <div class="stats">
+          <div class="stat" data-reveal="rise">
+            <p class="stat-num"><span class="counter" data-count="7">0</span></p>
+            <p class="stat-label">vulnerabilities found &amp; exploited</p>
+          </div>
+          <div class="stat" data-reveal="rise">
+            <p class="stat-num"><span class="counter" data-count="8">0</span></p>
+            <p class="stat-label">KQL detection rules authored</p>
+          </div>
+          <div class="stat" data-reveal="rise">
+            <p class="stat-num"><span class="counter" data-count="60">0</span><span class="counter-suffix">+</span></p>
+            <p class="stat-label">IOCs categorized from malware</p>
+          </div>
+          <div class="stat" data-reveal="rise">
+            <p class="stat-num"><span class="counter" data-count="14">0</span></p>
+            <p class="stat-label">hardening controls shipped</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SELECTED WORK ===== -->
+    <section id="work">
+      <div class="container container--wide">
+        <header class="section-head">
+          <span class="section-no">01</span>
+          <h2>Selected work</h2>
+        </header>
+        <hr class="rule">
+        <div class="project-list" data-reveal="stagger">
+          <a class="work-item work-row-link stagger-item" href="projects/index.html#project-thesis">
+            <span class="project-index">Thesis</span>
+            <div>
+              <h3 class="project-name">Risk Assessment Model for Cloud-Based LLM</h3>
+              <p class="work-desc">Deployed a RAG chatbot on AWS Bedrock and built a 35-test-case security framework
+                spanning LLM, RAG, and cloud layers. Shipped 14 hardening controls, raising the Security Posture Score
+                with 100% vulnerability remediation.</p>
+            </div>
+            <span class="project-link">Full project ↗</span>
+          </a>
+          <a class="work-item work-row-link stagger-item" href="projects/index.html#project-sentinel">
+            <span class="project-index">SOC Lab</span>
+            <div>
+              <h3 class="project-name">Microsoft Sentinel Home SOC Lab</h3>
+              <p class="work-desc">Azure VM as a honeypot, forwarded live attack logs to Sentinel, built a real-time
+                attack map with automated incident response workflows. Alerts fired within minutes.</p>
+            </div>
+            <span class="project-link">Full project ↗</span>
+          </a>
+          <a class="work-item work-row-link stagger-item" href="projects/index.html#project-threatintel">
+            <span class="project-index">Threat Intel</span>
+            <div>
+              <h3 class="project-name">Threat-Intel Aggregator</h3>
+              <p class="work-desc">Python/Flask tool pulling IOCs from OTX, FeodoTracker, AbuseIPDB, and VirusTotal,
+                deduplicated into one dashboard with real-time Slack and email alerting.</p>
+            </div>
+            <span class="project-link">Full project ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPLORE ===== -->
+    <section id="explore">
+      <div class="container">
+        <header class="section-head">
+          <span class="section-no">02</span>
+          <h2>Elsewhere on this site</h2>
+        </header>
+        <hr class="rule">
+        <div class="explore-list">
+          <div class="explore-item">
+            <a href="about/index.html">
+              <span class="explore-label">About &amp; credentials</span>
+              <span class="explore-into">about →</span>
+            </a>
+          </div>
+          <div class="explore-item">
+            <a href="experience/index.html">
+              <span class="explore-label">Experience</span>
+              <span class="explore-into">experience →</span>
+            </a>
+          </div>
+          <div class="explore-item">
+            <a href="leadership/index.html">
+              <span class="explore-label">Leadership &amp; service</span>
+              <span class="explore-into">leadership →</span>
+            </a>
+          </div>
+          <div class="explore-item">
+            <a href="writing/index.html">
+              <span class="explore-label">Writing</span>
+              <span class="explore-into">writing →</span>
+            </a>
+          </div>
+          <div class="explore-item">
+            <a href="contact/index.html">
+              <span class="explore-label">Contact</span>
+              <span class="explore-into">contact →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <ul class="footer-links">
+        <li><a href="mailto:ibrahim.a.yusuf741@gmail.com">ibrahim.a.yusuf741@gmail.com</a></li>
+        <li><a href="https://github.com/KoredeSec" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium</a></li>
+        <li><a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank"
+          rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://x.com/KoredeSec" target="_blank" rel="noopener noreferrer">X</a></li>
+        <li><a href="https://linktr.ee/KoredeSec" target="_blank" rel="noopener noreferrer">Linktree</a></li>
+      </ul>
+      <p class="footer-note">© 2026 <a href="https://koredesec.me" class="brand">KoredeSec</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

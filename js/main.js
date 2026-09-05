@@ -177,10 +177,19 @@
   // ---- Count-up stats ----
   const counters = document.querySelectorAll('.counter');
 
-  function animateCounter(el, from, to, duration, suffixEl) {
+  function setCounterFinal(el) {
+    const to = parseInt(el.getAttribute('data-count'), 10);
+    if (!Number.isNaN(to)) {
+      el.textContent = to.toLocaleString();
+    }
+    el._counterDone = true;
+  }
+
+  function animateCounter(el, from, to, duration) {
     const start = performance.now();
 
     function step(currentTime) {
+      if (el._counterDone) return;
       const elapsed = currentTime - start;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
@@ -188,41 +197,62 @@
       if (progress < 1) {
         window.requestAnimationFrame(step);
       } else {
-        el.textContent = to.toLocaleString();
+        setCounterFinal(el);
       }
     }
 
     window.requestAnimationFrame(step);
   }
 
-  function setCounterFinal(el) {
+  function revealCounter(entry, obs) {
+    const el = entry.target;
+    if (el.getAttribute('data-revealed') === 'true') return;
+    el.setAttribute('data-revealed', 'true');
+    el.setAttribute('data-revealed-at', String(Date.now()));
+    obs.unobserve(el);
+    if (prefersReducedMotion) {
+      setCounterFinal(el);
+      return;
+    }
+    const from = parseInt(el.getAttribute('data-from') || '0', 10);
     const to = parseInt(el.getAttribute('data-count'), 10);
     if (!Number.isNaN(to)) {
-      el.textContent = Math.round(to).toLocaleString();
+      animateCounter(el, from, to, 1100);
     }
   }
 
-  function revealCounter(entry) {
-    const el = entry.target;
-    if (prefersReducedMotion) {
-      setCounterFinal(el);
-    } else {
-      const from = parseInt(el.getAttribute('data-from') || '0', 10);
-      const to = parseInt(el.getAttribute('data-count'), 10);
-      const duration = 1100;
-      animateCounter(el, from, to, duration);
-    }
-    counterObserver.unobserve(el);
+  function scanCounters() {
+    const now = Date.now();
+    counters.forEach(function (el) {
+      if (el.textContent.trim() !== '0') return;
+      const rect = el.getBoundingClientRect();
+      if (!(rect.top < window.innerHeight && rect.bottom > 0)) return;
+      if (el.getAttribute('data-revealed') !== 'true') {
+        el.setAttribute('data-revealed', 'true');
+        setCounterFinal(el);
+        return;
+      }
+      const revealedAt = parseInt(el.getAttribute('data-revealed-at') || '0', 10);
+      if (now - revealedAt > 1500) {
+        setCounterFinal(el);
+      }
+    });
   }
 
   if (counters.length) {
     if (!prefersReducedMotion && hasIo) {
-      const counterObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(revealCounter);
-      }, { threshold: 0.5 });
+      const counterObserver = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) revealCounter(entry, obs);
+        });
+      }, { threshold: 0.35, rootMargin: '0px 0px -5% 0px' });
       counters.forEach(function (el) {
         counterObserver.observe(el);
       });
+      // Safety net: never leave a visible stat at 0. If the observer or the
+      // animation fails for any reason, force the final value in-view.
+      window.addEventListener('scroll', scanCounters, { passive: true });
+      window.setTimeout(scanCounters, 2500);
     } else {
       counters.forEach(setCounterFinal);
     }

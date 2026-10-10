@@ -5,216 +5,462 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#efece4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121210" media="(prefers-color-scheme: dark)">
   <title>Ibrahim Yusuf | Security Engineer - KoredeSec</title>
   <meta name="description"
     content="Ibrahim Yusuf (KoredeSec), Security Engineer specializing in cloud security, detection engineering, and DevSecOps.">
   <link rel="canonical" href="https://koredesec.me/">
-  <meta property="og:title" content="Ibrahim Yusuf | Security Engineer">
-  <meta property="og:description"
-    content="Security Engineer specializing in cloud security, detection engineering, and DevSecOps.">
-  <meta property="og:url" content="https://koredesec.me/">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="assets/apple-touch-icon.png">
+
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:url" content="https://koredesec.me/">
+  <meta property="og:title" content="Ibrahim Yusuf | Security Engineer">
+  <meta property="og:description" content="Security Engineer specializing in cloud security, detection engineering, and DevSecOps.">
+  <meta property="og:image" content="https://koredesec.me/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ibrahim Yusuf | Security Engineer">
-  <meta name="twitter:description"
-    content="Security Engineer specializing in cloud security, detection engineering, and DevSecOps.">
+  <meta name="twitter:description" content="Security Engineer specializing in cloud security, detection engineering, and DevSecOps.">
+  <meta name="twitter:image" content="https://koredesec.me/assets/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ibrahim Yusuf",
+    "alternateName": "KoredeSec",
+    "jobTitle": "Security Engineer",
+    "url": "https://koredesec.me/",
+    "image": "https://koredesec.me/assets/portrait-640.jpg",
+    "email": "mailto:ibrahim.a.yusuf741@gmail.com",
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Osun State University" },
+    "sameAs": [
+      "https://github.com/KoredeSec",
+      "https://www.linkedin.com/in/ibrahim-yusuf-38a267301",
+      "https://x.com/KoredeSec",
+      "https://medium.com/@KoredeSec",
+      "https://linktr.ee/KoredeSec"
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Fragment+Mono&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap"
     rel="stylesheet">
-
   <link rel="stylesheet" href="css/style.css">
+
   <script>
     (function () {
-      document.documentElement.classList.add('js');
-      var stored = null;
-      try { stored = localStorage.getItem('koredesec-theme'); } catch (e) {}
-      var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      var root = document.documentElement;
+      root.classList.add('js');
+      var t = null;
+      try { t = localStorage.getItem('koredesec-theme'); } catch (e) {}
+      if (t === 'light' || t === 'dark') root.setAttribute('data-theme', t);
     })();
   </script>
 </head>
 
-<body class="pre-hero">
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">KoredeSec</a>
-      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
-        <span class="nav-toggle-line" aria-hidden="true"></span>
-        <span class="nav-toggle-line" aria-hidden="true"></span>
-      </button>
-      <div class="nav-right">
-        <ul class="nav-links" id="nav-links" role="list">
-          <li><a href="about/index.html">About</a></li>
-          <li><a href="experience/index.html">Experience</a></li>
-          <li><a href="projects/index.html">Projects</a></li>
-          <li><a href="leadership/index.html">Leadership</a></li>
-          <li><a href="writing/index.html">Writing</a></li>
-          <li><a href="contact/index.html">Contact</a></li>
+  <header class="masthead" id="masthead">
+    <div class="masthead-bar">
+      <a class="wordmark" href="#top">KoredeSec</a>
+
+      <nav class="nav" id="nav" aria-label="Main navigation">
+        <ul role="list">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+          <li><a href="#writing">Writing</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
-          <span class="theme-dot" aria-hidden="true"></span>
-          <span id="theme-label">Dark</span>
+      </nav>
+
+      <div class="masthead-actions mono">
+        <button class="theme-switch" id="theme-switch" type="button" aria-label="Switch theme">
+          <span class="ts-paper">Light</span><span class="ts-sep" aria-hidden="true">/</span><span class="ts-ink">Dark</span>
         </button>
+        <button class="menu-btn" id="menu-btn" type="button" aria-controls="nav" aria-expanded="false">Menu</button>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <main>
+  <main id="main">
 
     <!-- ===== HERO ===== -->
-    <header class="hero" id="hero">
-      <div class="container">
-        <p class="hero-id hero-line" data-line="1">/KoredeSec · security engineer</p>
-        <h1 class="hero-name hero-line" data-line="2">Ibrahim Yusuf</h1>
-        <p class="hero-blunt hero-line" data-line="3">I find the ways systems break, then I build the detection that
-          catches the next attempt.</p>
-        <p class="hero-pos hero-line" data-line="4">Security Engineer specializing in cloud security, detection
-          engineering, and DevSecOps.</p>
-        <div class="hero-foot hero-line" data-line="5">
-          <img class="hero-pfp" src="assets/pfp.jpg" alt="Ibrahim Yusuf" width="168" height="168">
-          <p class="hero-socials">
+    <section class="hero" id="top" aria-labelledby="name">
+      <p class="kicker mono">/KoredeSec · security engineer</p>
+      <h1 class="name" id="name"><span>Ibrahim</span> <span>Yusuf</span></h1>
+      <ul class="tags" role="list" aria-label="Focus areas">
+        <li class="tag tag-sky">Security Engineer</li>
+        <li class="tag tag-mint">Cloud security</li>
+        <li class="tag tag-coral">Detection engineering</li>
+        <li class="tag tag-sun">DevSecOps</li>
+      </ul>
+
+      <div class="hero-body">
+        <div class="hero-text">
+          <p class="lede">I find the ways systems break, then I build <mark>the detection that catches the next attempt.</mark></p>
+          <p class="hero-sub">Security Engineer specializing in cloud security, detection engineering, and DevSecOps.</p>
+          <p class="hero-links mono">
             <a href="https://github.com/KoredeSec" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank"
-              rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
             <a href="https://x.com/KoredeSec" target="_blank" rel="noopener noreferrer">X ↗</a>
             <a href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium ↗</a>
             <a href="https://linktr.ee/KoredeSec" target="_blank" rel="noopener noreferrer">Linktree ↗</a>
           </p>
         </div>
-      </div>
-    </header>
 
-    <!-- ===== STATS ===== -->
-    <section class="stats-section" aria-label="Headline numbers">
-      <div class="container">
-        <div class="stats">
-          <div class="stat" data-reveal="rise">
-            <p class="stat-num"><span class="counter" data-count="7">0</span></p>
-            <p class="stat-label">vulnerabilities found &amp; exploited</p>
+        <figure class="exhibit">
+          <span class="tape" aria-hidden="true"></span>
+          <picture>
+            <source type="image/webp" srcset="assets/portrait-320.webp 320w, assets/portrait-640.webp 640w" sizes="260px">
+            <img src="assets/portrait-640.jpg" srcset="assets/portrait-320.jpg 320w, assets/portrait-640.jpg 640w" sizes="260px"
+              alt="Ibrahim Yusuf" width="260" height="260" fetchpriority="high">
+          </picture>
+        </figure>
+      </div>
+
+      <ol class="findings-list" role="list" aria-label="Headline numbers">
+        <li><span class="f-num">7</span><span class="f-text">vulnerabilities found &amp; exploited</span></li>
+        <li><span class="f-num">8</span><span class="f-text">KQL detection rules authored</span></li>
+        <li><span class="f-num">60+</span><span class="f-text">IOCs categorized from malware</span></li>
+        <li><span class="f-num">14</span><span class="f-text">hardening controls shipped</span></li>
+      </ol>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <header class="sec-head">
+        <h2 id="projects-title" style="--accent: var(--sky)">Projects</h2>
+        <p class="sec-note mono">Attack, detect, harden.</p>
+      </header>
+
+      <div class="case" id="project-thesis">
+        <div class="case-text">
+          <p class="case-sub mono">BSc Thesis - Original Research</p>
+          <h3 class="case-title">Risk Assessment Model for Cloud-Based LLM</h3>
+          <p class="stackline mono">AWS Bedrock (Llama 3.1 8B) · EC2 · OpenSearch · Flask · LangChain · IAM · CloudTrail</p>
+          <p>Deployed a RAG chatbot on AWS Bedrock and built a 35-test-case security framework spanning LLM, RAG, and
+            cloud layers. Shipped 14 hardening controls, raising the Security Posture Score with 100% vulnerability
+            remediation.</p>
+          <p><a class="ink-link" href="https://github.com/KoredeSec/cloud-llm-risk-assessment-model" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></p>
+        </div>
+
+        <!-- Security Posture Explorer: scores and control names from the project README -->
+        <div class="instrument" id="explorer" data-state="baseline">
+          <div class="inst-head mono">
+            <span>Security Posture Explorer</span>
           </div>
-          <div class="stat" data-reveal="rise">
-            <p class="stat-num"><span class="counter" data-count="8">0</span></p>
-            <p class="stat-label">KQL detection rules authored</p>
+
+          <div class="inst-score" aria-live="polite">
+            <p class="inst-sub">Press apply to run the 14 hardening controls against the stack.</p>
+            <p class="score"><span id="sps-value">67.09</span><small>%</small></p>
+            <p class="score-cap mono" id="score-label">Baseline Security Posture Score</p>
+            <div class="gauge" aria-hidden="true">
+              <span class="gauge-fill" id="sps-meter" style="--v:67.09"></span>
+              <span class="gauge-tick" style="--v:67.09"></span><span class="gauge-tick" style="--v:89.6"></span>
+            </div>
+            <p class="vuln-stat mono" id="vuln-stat">Vulnerabilities present across 3 layers</p>
           </div>
-          <div class="stat" data-reveal="rise">
-            <p class="stat-num"><span class="counter" data-count="60">0</span><span class="counter-suffix">+</span></p>
-            <p class="stat-label">IOCs categorized from malware</p>
+
+          <div class="inst-block">
+            <ol class="ctrls" role="list">
+              <li><b>C01</b> Input validation</li>
+              <li><b>C02</b> Output filtering</li>
+              <li><b>C03</b> Context separation</li>
+              <li><b>C04</b> IAM hardening</li>
+              <li><b>C05</b> Data encryption</li>
+              <li><b>C06</b> Network segmentation</li>
+              <li><b>C07</b> Rate limiting</li>
+              <li><b>C08</b> Vector store ACL</li>
+              <li><b>C09</b> Secrets management</li>
+              <li><b>C10</b> Auth hardening</li>
+              <li><b>C11</b> Supply chain</li>
+              <li><b>C12</b> Anomaly detection</li>
+              <li><b>C13</b> Citations</li>
+              <li><b>C14</b> Audit</li>
+            </ol>
           </div>
-          <div class="stat" data-reveal="rise">
-            <p class="stat-num"><span class="counter" data-count="14">0</span></p>
-            <p class="stat-label">hardening controls shipped</p>
+
+          <div class="inst-actions">
+            <button class="btn btn-solid mono" id="btn-harden" type="button"><span class="btn-icon" aria-hidden="true">»</span>Apply hardening controls</button>
+            <button class="btn mono" id="btn-reset" type="button" disabled>Reset to baseline</button>
           </div>
+        </div>
+      </div>
+
+      <div class="case-index">
+        <article class="entry" id="project-sentinel">
+          <p class="entry-id mono"><span class="tag tag-coral">SOC Lab</span></p>
+          <div class="entry-main">
+            <h3>Microsoft Sentinel Home SOC Lab</h3>
+            <p>Azure VM as a honeypot, forwarded live attack logs to Sentinel, built a real-time attack map. Created
+              automated incident response workflows using Logic Apps; alerts fired within minutes. Wrote KQL rules
+              targeting failed RDP logins (Event ID 4625), enriched attacker IPs with GeoIP watchlist data, automated
+              metadata logging to a custom Sentinel table via Logic App.</p>
+          </div>
+          <p class="entry-links mono"><a href="https://github.com/KoredeSec/azure-sentinel-home-soc" target="_blank" rel="noopener noreferrer">GitHub ↗</a></p>
+        </article>
+
+        <article class="entry" id="project-threatintel">
+          <p class="entry-id mono"><span class="tag tag-sun">Threat Intel</span></p>
+          <div class="entry-main">
+            <h3>Threat-Intel Aggregator</h3>
+            <p>Python/Flask tool pulling IOCs from OTX, FeodoTracker, AbuseIPDB, and VirusTotal; deduplicates across
+              feeds, geolocates threats on an interactive map. Integrated Slack and email alerting: live IOC
+              notifications with zero manual intervention. Reduced IOC review time by consolidating 4 separate threat
+              feeds into a single normalized dashboard.</p>
+          </div>
+          <p class="entry-links mono"><a href="https://github.com/KoredeSec/threat-intel-aggregator" target="_blank" rel="noopener noreferrer">GitHub ↗</a></p>
+        </article>
+
+        <article class="entry" id="project-stackdeployer">
+          <p class="entry-id mono"><span class="tag tag-mint">DevOps</span></p>
+          <div class="entry-main">
+            <h3>StackDeployer</h3>
+            <p>Production-grade Bash script that fully automates Dockerized app deployment on remote Linux servers: repo
+              pull, Docker setup, Nginx reverse proxy config, and secure SSH handshake in a single command. Eliminated
+              an estimated 15+ minutes of manual deployment steps per release cycle.</p>
+          </div>
+          <p class="entry-links mono"><a href="https://github.com/KoredeSec/stackdeployer" target="_blank" rel="noopener noreferrer">GitHub ↗</a></p>
+        </article>
+
+        <article class="entry" id="project-vpc">
+          <p class="entry-id mono"><span class="tag tag-sky">Cloud</span></p>
+          <div class="entry-main">
+            <h3>Linux VPC Builder</h3>
+            <p>Production-ready CLI tool recreating cloud VPC functionality entirely on Linux using container networking
+              primitives (subnets, routing tables, security groups), no cloud dependency. Implements subnet isolation,
+              custom routing tables, and iptables-based security group rules mirroring AWS VPC behavior.</p>
+          </div>
+          <p class="entry-links mono"><a href="https://github.com/KoredeSec/Linux-VPC-Builder" target="_blank" rel="noopener noreferrer">GitHub ↗</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <header class="sec-head">
+        <h2 id="experience-title" style="--accent: var(--coral)">Experience</h2>
+        <p class="sec-note mono">Three structured roles across detection engineering, SOC operations, and cloud infrastructure.</p>
+      </header>
+
+      <ol class="roles" role="list">
+        <li class="role">
+          <p class="role-when mono">Jan – Apr 2026<br><span>Remote</span></p>
+          <div class="role-main">
+            <h3>Security Engineering Intern</h3>
+            <p class="role-org mono">Cyblack Internship</p>
+            <ul class="points" role="list">
+              <li>Conducted a full penetration test on VulnBank, a deliberately vulnerable training application (not a
+                production banking system), using Burp Suite; independently discovered and exploited 7 vulnerabilities
+                (SQL injection, JWT manipulation, mass assignment, race condition, IDOR, XSS, SSRF), mapped to the Cyber
+                Kill Chain</li>
+              <li>Authored 8 KQL Scheduled Query Rules in Microsoft Sentinel covering credential stuffing, phishing
+                payloads, WannaCry C2, XWorm persistence, and AsyncRAT communications, each mapped to MITRE ATT&amp;CK
+                with entity mappings for automatic incident enrichment</li>
+              <li>Led Team 7's cloud security sprint: deployed Microsoft Defender for Servers with JIT VM access and a
+                Logic App playbook for automated incident escalation</li>
+              <li>Authored a Privileged Account Policy (P7S-PAP-01) aligned to ISO/IEC 27002:2022, NYDFS 23 NYCRR
+                500.07, and PCI-DSS, with MFA enforcement, bastion host access, and a dual-approval Break-Glass
+                procedure</li>
+              <li>Profiled three government-sector threat actors in OpenCTI using the Diamond Model; extracted and
+                categorized 60+ IOCs from WannaCry, XWorm, and AsyncRAT malware samples</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="role">
+          <p class="role-when mono">Sep – Dec 2025<br><span>Remote</span></p>
+          <div class="role-main">
+            <h3>SOC Analyst Intern</h3>
+            <p class="role-org mono">Cyblack SOC Academy</p>
+            <ul class="points" role="list">
+              <li>Performed malware triage on 30+ samples using VirusTotal hash scanning and OSINT enrichment, producing
+                written IOC reports</li>
+              <li>Ran credentialed Nessus scans across lab environments, triaged findings by CVSS score, drafted
+                remediation recommendations</li>
+              <li>Automated patch deployment for common CVEs using Ansible playbooks, cutting manual remediation steps</li>
+              <li>Investigated simulated security incidents using SIEM log analysis and threat intelligence feeds (OTX,
+                AbuseIPDB)</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="role">
+          <p class="role-when mono">Aug – Nov 2025<br><span>Remote</span></p>
+          <div class="role-main">
+            <h3>Cloud Engineering Trainee</h3>
+            <p class="role-org mono">AWS re/Start Program</p>
+            <ul class="points" role="list">
+              <li>Completed 40+ hands-on labs covering EC2, VPC, S3, CloudTrail, KMS, SNS, and EventBridge</li>
+              <li>Built and documented cloud architecture patterns around least-privilege IAM and audit logging</li>
+              <li>Developed proficiency in CI/CD fundamentals, infrastructure automation, and AWS Well-Architected
+                Framework principles</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <header class="sec-head">
+        <h2 id="about-title" style="--accent: var(--mint)">About</h2>
+        <p class="sec-note mono">The background, skills, and certifications behind the security work on this site.</p>
+      </header>
+
+      <div class="about">
+        <div class="about-text">
+          <p>I'm a security engineer with hands-on experience across the full security lifecycle: penetration testing,
+            detection engineering, cloud infrastructure hardening, and governance. I approach security not as a checklist
+            but as a practice: understanding how systems break, and building the controls and visibility to keep them from
+            breaking at scale.</p>
+          <p>I've completed two structured training programs (the Cyblack SOC Academy and the AWS re/Start program) and
+            a six-sprint security internship covering threat intelligence, cloud security, GRC, and SOC operations. My
+            academic foundation is a BSc in Cybersecurity from Osun State University (UNIOSUN), where I also served as
+            the Pioneer President of NACSS UNIOSUN across two administrations, from 2024 to 2026.</p>
+        </div>
+
+        <div class="certs">
+          <p class="label mono">Credentials</p>
+          <table class="cert-table">
+            <tbody>
+              <tr><td>ISC2 CC</td><td class="mono nt">Certified in Cybersecurity</td></tr>
+              <tr><td>Google Cybersecurity Professional Certificate</td><td class="mono nt"></td></tr>
+              <tr><td>AWS Certified Cloud Practitioner</td><td class="mono nt"></td></tr>
+              <tr><td>Microsoft SC-200: Security Operations Analyst</td><td class="mono nt">Recertified, valid to 2027</td></tr>
+              <tr class="next"><td>CCNA</td><td class="mono nt">Planned</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="toolkit">
+        <div>
+          <h3 class="label mono">Cloud &amp; Infrastructure</h3>
+          <p>AWS (EC2, VPC, S3, CloudTrail, KMS, SNS, EventBridge, IAM, Bedrock, OpenSearch) · Azure (VMs, Sentinel,
+            Logic Apps) · Docker · Nginx · Apache2 · SSH/SCP · Git</p>
+        </div>
+        <div>
+          <h3 class="label mono">Security &amp; SOC</h3>
+          <p>Threat Intelligence (OTX, FeodoTracker, AbuseIPDB, VirusTotal) · SIEM (Microsoft Sentinel) · Microsoft
+            Defender for Cloud · KQL · Burp Suite · OpenCTI · MITRE ATT&amp;CK · Nessus · Ansible · Incident Response ·
+            Log Analysis · Honeypot Deployment</p>
+        </div>
+        <div>
+          <h3 class="label mono">Languages &amp; Scripting</h3>
+          <p>Python (Flask, LangChain, automation, threat intelligence tooling) · Bash · SQL · YAML · JSON · HTML/CSS</p>
+        </div>
+        <div>
+          <h3 class="label mono">GRC &amp; Compliance</h3>
+          <p>ISO/IEC 27002 · NYDFS 23 NYCRR 500.07 · PCI-DSS · Privileged Access Management · Policy Authoring ·
+            WCAG 2.1 · NIST SP 800-30</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== SELECTED WORK ===== -->
-    <section id="work">
-      <div class="container container--wide">
-        <header class="section-head">
-          <span class="section-no">01</span>
-          <h2>Selected works</h2>
-        </header>
-        <hr class="rule">
-        <div class="project-list" data-reveal="stagger">
-          <a class="work-item work-row-link stagger-item" href="projects/index.html#project-thesis">
-            <span class="project-index">Thesis</span>
-            <div>
-              <h3 class="project-name">Risk Assessment Model for Cloud-Based LLM</h3>
-              <p class="work-desc">Deployed a RAG chatbot on AWS Bedrock and built a 35-test-case security framework
-                spanning LLM, RAG, and cloud layers. Shipped 14 hardening controls, raising the Security Posture Score
-                with 100% vulnerability remediation.</p>
-            </div>
-            <span class="project-link">Full project ↗</span>
-          </a>
-          <a class="work-item work-row-link stagger-item" href="projects/index.html#project-sentinel">
-            <span class="project-index">SOC Lab</span>
-            <div>
-              <h3 class="project-name">Microsoft Sentinel Home SOC Lab</h3>
-              <p class="work-desc">Azure VM as a honeypot, forwarded live attack logs to Sentinel, built a real-time
-                attack map with automated incident response workflows. Alerts fired within minutes.</p>
-            </div>
-            <span class="project-link">Full project ↗</span>
-          </a>
-          <a class="work-item work-row-link stagger-item" href="projects/index.html#project-threatintel">
-            <span class="project-index">Threat Intel</span>
-            <div>
-              <h3 class="project-name">Threat-Intel Aggregator</h3>
-              <p class="work-desc">Python/Flask tool pulling IOCs from OTX, FeodoTracker, AbuseIPDB, and VirusTotal,
-                deduplicated into one dashboard with real-time Slack and email alerting.</p>
-            </div>
-            <span class="project-link">Full project ↗</span>
-          </a>
+    <!-- ===== LEADERSHIP ===== -->
+    <section class="section" id="leadership" aria-labelledby="leadership-title">
+      <header class="sec-head">
+        <h2 id="leadership-title" style="--accent: var(--sun)">Leadership</h2>
+        <p class="sec-note mono">Pioneer President of the Nigeria Association of Cyber Security Students (NACSS), Osun
+          State University, across two administrations.</p>
+      </header>
+
+      <div class="lead">
+        <div class="lead-text">
+          <p>Pioneer President of NACSS UNIOSUN (Nigeria Association of Cyber Security Students), 2024–2026. I built the
+            association from its founding and led it across two administrations, growing it from a new departmental
+            association on paper into an active platform where students build security skills, compete, and connect with
+            professionals.</p>
+          <p>Under my leadership, NACSS delivered Cyber Fairs, cybersecurity bootcamps, ISC training programs,
+            hackathons, and NACSS Week. I drove student participation, engaged speakers, and turned ideas into programs
+            students actively learned from.</p>
+          <p>I also represented the Department of Cybersecurity within the wider Faculty of Computing and Information
+            Technology (FOCITSA) student leadership community. My service across both administrations was recognised
+            with four awards: Departmental President of the Year (FOCITSA), Cloud Security Analyst of the Year, Security
+            Analyst of the Year, and Award of Service.</p>
+        </div>
+
+        <div class="lead-side">
+          <p class="label mono">Awards</p>
+          <ul class="awards" role="list">
+            <li><span>Departmental President of the Year</span><span class="mono">FOCITSA</span></li>
+            <li><span>Cloud Security Analyst of the Year</span><span class="mono">NACSS UNIOSUN</span></li>
+            <li><span>Security Analyst of the Year</span><span class="mono">NACSS UNIOSUN</span></li>
+            <li><span>Award of Service</span><span class="mono">NACSS UNIOSUN</span></li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ===== EXPLORE ===== -->
-    <section id="explore">
-      <div class="container">
-        <header class="section-head">
-          <span class="section-no">02</span>
-          <h2>Elsewhere on this site</h2>
-        </header>
-        <hr class="rule">
-        <div class="explore-list">
-          <div class="explore-item">
-            <a href="about/index.html">
-              <span class="explore-label">About &amp; credentials</span>
-              <span class="explore-into">about →</span>
-            </a>
-          </div>
-          <div class="explore-item">
-            <a href="experience/index.html">
-              <span class="explore-label">Experience</span>
-              <span class="explore-into">experience →</span>
-            </a>
-          </div>
-          <div class="explore-item">
-            <a href="leadership/index.html">
-              <span class="explore-label">Leadership &amp; service</span>
-              <span class="explore-into">leadership →</span>
-            </a>
-          </div>
-          <div class="explore-item">
-            <a href="writing/index.html">
-              <span class="explore-label">Writing</span>
-              <span class="explore-into">writing →</span>
-            </a>
-          </div>
-          <div class="explore-item">
-            <a href="contact/index.html">
-              <span class="explore-label">Contact</span>
-              <span class="explore-into">contact →</span>
-            </a>
-          </div>
-        </div>
+    <!-- ===== WRITING ===== -->
+    <section class="section" id="writing" aria-labelledby="writing-title">
+      <header class="sec-head">
+        <h2 id="writing-title" style="--accent: var(--sky)">Writing</h2>
+        <p class="sec-note mono">Verified write-ups published on Medium. Each one is a lab I actually ran, documented end to end.</p>
+      </header>
+
+      <ol class="reports" role="list">
+        <li><a href="https://medium.com/@KoredeSec/your-azure-environment-has-no-guardrails-heres-how-to-fix-that-9536a6e90c29" target="_blank" rel="noopener noreferrer">
+            <span class="r-title">Your Azure Environment Has No Guardrails. Here's How to Fix That.</span><span class="r-pub mono">Medium ↗</span></a></li>
+        <li><a href="https://medium.com/@KoredeSec/mastering-azure-identities-a-step-by-step-guide-to-microsoft-entra-id-az-104-lab-walkthrough-32d60ff444bc" target="_blank" rel="noopener noreferrer">
+            <span class="r-title">Mastering Azure Identities: A Step-by-Step Guide to Microsoft Entra ID - AZ-104 Lab Walkthrough</span><span class="r-pub mono">Medium ↗</span></a></li>
+        <li><a href="https://medium.com/@KoredeSec/%EF%B8%8F-building-a-virtual-private-cloud-vpc-from-scratch-on-linux-no-cloud-needed-b27391d3efa3" target="_blank" rel="noopener noreferrer">
+            <span class="r-title">Building a Virtual Private Cloud (VPC) from Scratch on Linux — No Cloud Needed</span><span class="r-pub mono">Medium ↗</span></a></li>
+        <li><a href="https://medium.com/stackademic/building-a-production-grade-blue-green-deployment-with-real-time-monitoring-and-slack-alerts-9ce2cf12a2b5" target="_blank" rel="noopener noreferrer">
+            <span class="r-title">Building a Production-Grade Blue/Green Deployment with Real-Time Monitoring and Slack Alerts</span><span class="r-pub mono">Stackademic ↗</span></a></li>
+        <li><a href="https://medium.com/@KoredeSec/building-stackdeployer-a-production-grade-bash-script-for-the-hng-devops-stage-1-challenge-0d4ab2f0dd45" target="_blank" rel="noopener noreferrer">
+            <span class="r-title">Building StackDeployer: A Production-Grade Bash Script for the HNG DevOps Stage 1 Challenge</span><span class="r-pub mono">Medium ↗</span></a></li>
+        <li><a href="https://medium.com/stackademic/threat-intel-aggregator-real-time-cyber-threat-intelligence-with-alerts-sast-and-visualization-2d8189d9d8b5" target="_blank" rel="noopener noreferrer">
+            <span class="r-title">Threat-Intel Aggregator: Real-Time Cyber Threat Intelligence with Alerts, SAST, and Visualization</span><span class="r-pub mono">Stackademic ↗</span></a></li>
+        <li><a href="https://medium.com/@KoredeSec/%EF%B8%8F-building-a-real-soc-in-azure-honeypot-sentinel-and-automated-response-31f6406cbe56" target="_blank" rel="noopener noreferrer">
+            <span class="r-title">Building a Real SOC in Azure: Honeypot, Sentinel, and Automated Response</span><span class="r-pub mono">Medium ↗</span></a></li>
+      </ol>
+      <p class="reports-cta">Read all writing on <a class="ink-link" href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium ↗</a></p>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <header class="sec-head">
+        <h2 id="contact-title" style="--accent: var(--coral)">Contact</h2>
+        <p class="sec-note mono">Open to security engineering, cloud security, and SOC roles.</p>
+      </header>
+
+      <div class="contact-body">
+        <p>Best reached by email for roles, collaborations, or a conversation about detection engineering and cloud
+          security. I read every message and reply within two business days.</p>
+        <p class="email-line">
+          <a class="email" href="mailto:ibrahim.a.yusuf741@gmail.com">ibrahim.a.yusuf741@gmail.com</a>
+          <button class="copy mono" id="copy-btn" type="button" data-copy="ibrahim.a.yusuf741@gmail.com">Copy</button>
+        </p>
+        <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+        <p><a class="btn btn-solid mono" href="assets/Ibrahim_Yusuf_Resume.pdf" download="Ibrahim_Yusuf_Resume.pdf"><span class="btn-icon" aria-hidden="true">↓</span>Download resume</a></p>
+        <p class="contact-links mono">
+          <a href="https://github.com/KoredeSec" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium ↗</a>
+          <a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a href="https://x.com/KoredeSec" target="_blank" rel="noopener noreferrer">X ↗</a>
+          <a href="https://linktr.ee/KoredeSec" target="_blank" rel="noopener noreferrer">Linktree ↗</a>
+        </p>
       </div>
     </section>
 
+    <footer class="footer mono">
+      <span>© 2026 KoredeSec</span>
+      <a href="#top">Back to top ↑</a>
+    </footer>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <ul class="footer-links">
-        <li><a href="mailto:ibrahim.a.yusuf741@gmail.com">ibrahim.a.yusuf741@gmail.com</a></li>
-        <li><a href="https://github.com/KoredeSec" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium</a></li>
-        <li><a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank"
-          rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://x.com/KoredeSec" target="_blank" rel="noopener noreferrer">X</a></li>
-        <li><a href="https://linktr.ee/KoredeSec" target="_blank" rel="noopener noreferrer">Linktree</a></li>
-      </ul>
-      <p class="footer-note">© 2026 <a href="https://koredesec.me" class="brand">KoredeSec</a></p>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 
 </html>

@@ -1,392 +1,168 @@
 /* ============================================================
-   KoredeSec Portfolio — Main JavaScript
-   - Page entrance (per-page load-in)
-   - Nav: scroll border + hide-on-scroll-down/show-on-scroll-up
-   - Mobile nav toggle
-   - Dark mode toggle
-   - Scroll reveals: varied techniques + staggered lists + count-ups
-   - Security Posture Explorer (thesis interactive)
-   - Copy-to-clipboard
+   KoredeSec portfolio
+   - Theme toggle (light / dark, remembers choice)
+   - Mobile menu + current-section highlight in the nav
+   - Security Posture Explorer (thesis)
+   - Copy email
+   - Highlighter on the hero line
    ============================================================ */
 
 (function () {
   'use strict';
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const navToggle = document.getElementById('nav-toggle');
-  const navLinks = document.getElementById('nav-links');
+  var root = document.documentElement;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- Page entrance ----
-  const body = document.body;
-  if (body.classList.contains('pre-hero')) {
-    if (prefersReducedMotion) {
-      body.classList.remove('pre-hero');
-      body.classList.add('hero-in');
-    } else {
-      window.requestAnimationFrame(function () {
-        window.requestAnimationFrame(function () {
-          body.classList.remove('pre-hero');
-          body.classList.add('hero-in');
-        });
+  // ---- Theme ----
+  var themeSwitch = document.getElementById('theme-switch');
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function theme() {
+    var t = root.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t;
+    return systemDark.matches ? 'dark' : 'light';
+  }
+  function labelTheme() {
+    if (themeSwitch) themeSwitch.setAttribute('aria-label', theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  if (themeSwitch) {
+    labelTheme();
+    themeSwitch.addEventListener('click', function () {
+      var next = theme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('koredesec-theme', next); } catch (e) { /* storage blocked */ }
+      labelTheme();
+    });
+    systemDark.addEventListener('change', labelTheme);
+  }
+
+  // ---- Mobile menu ----
+  var menuBtn = document.getElementById('menu-btn');
+  var nav = document.getElementById('nav');
+
+  function setMenu(open) {
+    if (!menuBtn || !nav) return;
+    nav.classList.toggle('is-open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.textContent = open ? 'Close' : 'Menu';
+  }
+  if (menuBtn && nav) {
+    menuBtn.addEventListener('click', function () { setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') { setMenu(false); menuBtn.focus(); }
+    });
+    window.matchMedia('(min-width: 901px)').addEventListener('change', function (mq) { if (mq.matches) setMenu(false); });
+  }
+
+  // ---- Current section in nav ----
+  var navLinks = document.querySelectorAll('.nav a[href^="#"]');
+  if ('IntersectionObserver' in window && navLinks.length) {
+    var linkFor = {};
+    navLinks.forEach(function (a) { linkFor[a.getAttribute('href').slice(1)] = a; });
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(function (a) { a.removeAttribute('aria-current'); });
+        var link = linkFor[entry.target.id];
+        if (link) link.setAttribute('aria-current', 'true');
       });
-    }
-  }
-
-  // ---- Nav scroll border + hide/show ----
-  const nav = document.getElementById('site-nav');
-  let lastScrollY = window.scrollY;
-  let navMenuOpen = false;
-
-  function handleNavScroll() {
-    if (!nav) return;
-    const y = window.scrollY;
-
-    if (y > 8) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-
-    if (!prefersReducedMotion && !navMenuOpen) {
-      if (y > 140 && y > lastScrollY) {
-        nav.classList.add('nav-hidden');
-      } else {
-        nav.classList.remove('nav-hidden');
-      }
-    } else {
-      nav.classList.remove('nav-hidden');
-    }
-
-    lastScrollY = y;
-  }
-
-  window.addEventListener('scroll', handleNavScroll, { passive: true });
-  handleNavScroll();
-
-  // ---- Mobile nav toggle ----
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', function () {
-      const isOpen = navLinks.classList.toggle('open');
-      navMenuOpen = isOpen;
-      navToggle.setAttribute('aria-expanded', String(isOpen));
-      navToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    Object.keys(linkFor).forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) spy.observe(s);
     });
-
-    navLinks.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        navLinks.classList.remove('open');
-        navMenuOpen = false;
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.setAttribute('aria-label', 'Open navigation menu');
-      });
-    });
-  }
-
-  // ---- Dark mode toggle ----
-  const themeToggle = document.getElementById('theme-toggle');
-  const themeLabel = document.getElementById('theme-label');
-  const rootEl = document.documentElement;
-
-  function currentTheme() {
-    return rootEl.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-  }
-
-  function updateThemeUI() {
-    if (!themeToggle || !themeLabel) return;
-    const dark = currentTheme() === 'dark';
-    themeLabel.textContent = dark ? 'Light' : 'Dark';
-    themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    themeToggle.setAttribute('aria-pressed', String(dark));
-  }
-
-  function setTheme(next) {
-    rootEl.setAttribute('data-theme', next);
-    try {
-      localStorage.setItem('koredesec-theme', next);
-    } catch (e) {
-      // storage unavailable — theme still applies for this session
-    }
-    updateThemeUI();
-  }
-
-  if (themeToggle) {
-    updateThemeUI();
-    themeToggle.addEventListener('click', function () {
-      setTheme(currentTheme() === 'dark' ? 'light' : 'dark');
-    });
-  }
-
-  // ---- Scroll reveals ----
-  const revealEls = document.querySelectorAll('[data-reveal]');
-  const hasIo = 'IntersectionObserver' in window;
-
-  function setRevealed(cluster) {
-    cluster.forEach(function (el) {
-      el.classList.add('js-seen');
-    });
-  }
-
-  function armStagger(parent) {
-    const items = Array.prototype.slice.call(parent.querySelectorAll('.stagger-item'));
-    if (!items.length) return;
-    items.forEach(function (item, index) {
-      item.classList.add('js-seen');
-      if (!prefersReducedMotion) {
-        item.style.transitionDelay = String(60 + index * 90) + 'ms';
-      }
-    });
-    setTimeout(function () {
-      items.forEach(function (item) {
-        item.style.transitionDelay = '';
-      });
-    }, (items.length * 90) + 900);
-  }
-
-  function revealNow(entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      if (el.getAttribute('data-reveal') === 'stagger') {
-        el.classList.add('js-seen');
-        window.requestAnimationFrame(function () {
-          armStagger(el);
-        });
-      } else {
-        el.classList.add('js-seen');
-      }
-      revealObserver.unobserve(el);
-    });
-  }
-
-  let revealObserver = null;
-
-  if (!prefersReducedMotion && hasIo && revealEls.length) {
-    revealObserver = new IntersectionObserver(revealNow, {
-      threshold: 0.02,
-      rootMargin: '0px 0px -4% 0px'
-    });
-    revealEls.forEach(function (el) {
-      revealObserver.observe(el);
-    });
-  } else if (revealEls.length) {
-    revealEls.forEach(function (el) {
-      el.classList.add('js-seen');
-    });
-  }
-
-  // ---- Count-up stats ----
-  const counters = document.querySelectorAll('.counter');
-
-  function setCounterFinal(el) {
-    const to = parseInt(el.getAttribute('data-count'), 10);
-    if (!Number.isNaN(to)) {
-      el.textContent = to.toLocaleString();
-    }
-    el._counterDone = true;
-  }
-
-  function animateCounter(el, from, to, duration) {
-    const start = performance.now();
-
-    function step(currentTime) {
-      if (el._counterDone) return;
-      const elapsed = currentTime - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(from + (to - from) * eased).toLocaleString();
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        setCounterFinal(el);
-      }
-    }
-
-    window.requestAnimationFrame(step);
-  }
-
-  function revealCounter(entry, obs) {
-    const el = entry.target;
-    if (el.getAttribute('data-revealed') === 'true') return;
-    el.setAttribute('data-revealed', 'true');
-    el.setAttribute('data-revealed-at', String(Date.now()));
-    obs.unobserve(el);
-    if (prefersReducedMotion) {
-      setCounterFinal(el);
-      return;
-    }
-    const from = parseInt(el.getAttribute('data-from') || '0', 10);
-    const to = parseInt(el.getAttribute('data-count'), 10);
-    if (!Number.isNaN(to)) {
-      animateCounter(el, from, to, 1100);
-    }
-  }
-
-  function scanCounters() {
-    const now = Date.now();
-    counters.forEach(function (el) {
-      if (el.textContent.trim() !== '0') return;
-      const rect = el.getBoundingClientRect();
-      if (!(rect.top < window.innerHeight && rect.bottom > 0)) return;
-      if (el.getAttribute('data-revealed') !== 'true') {
-        el.setAttribute('data-revealed', 'true');
-        setCounterFinal(el);
-        return;
-      }
-      const revealedAt = parseInt(el.getAttribute('data-revealed-at') || '0', 10);
-      if (now - revealedAt > 1500) {
-        setCounterFinal(el);
-      }
-    });
-  }
-
-  if (counters.length) {
-    if (!prefersReducedMotion && hasIo) {
-      const counterObserver = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) revealCounter(entry, obs);
-        });
-      }, { threshold: 0.35, rootMargin: '0px 0px -5% 0px' });
-      counters.forEach(function (el) {
-        counterObserver.observe(el);
-      });
-      // Safety net: never leave a visible stat at 0. If the observer or the
-      // animation fails for any reason, force the final value in-view.
-      window.addEventListener('scroll', scanCounters, { passive: true });
-      window.setTimeout(scanCounters, 2500);
-    } else {
-      counters.forEach(setCounterFinal);
-    }
   }
 
   // ---- Security Posture Explorer ----
-  const btnHarden = document.getElementById('btn-harden');
-  const btnReset = document.getElementById('btn-reset');
-  const postureBar = document.getElementById('posture-bar');
-  const scoreValue = document.getElementById('score-value');
-  const scoreLabel = document.getElementById('score-label');
-  const vulnStat = document.getElementById('vuln-stat');
-  const controlItems = document.querySelectorAll('.control-item');
+  var explorer = document.getElementById('explorer');
+  var btnHarden = document.getElementById('btn-harden');
+  var btnReset = document.getElementById('btn-reset');
+  if (explorer && btnHarden && btnReset) {
+    var BASELINE = 67.09;
+    var HARDENED = 89.60;
+    var scoreValue = document.getElementById('sps-value');
+    var meter = document.getElementById('sps-meter');
+    var scoreLabel = document.getElementById('score-label');
+    var vulnStat = document.getElementById('vuln-stat');
+    var ctrls = explorer.querySelectorAll('.ctrls li');
+    var timers = [];
 
-  const BASELINE_SCORE = 67.09;
-  const HARDENED_SCORE = 89.6;
-  let isHardened = false;
-
-  function applyHardening() {
-    if (isHardened || !postureBar || !scoreValue) return;
-    isHardened = true;
-
-    btnHarden.disabled = true;
-    btnReset.disabled = false;
-
-    postureBar.style.setProperty('--score', String(HARDENED_SCORE));
-    animateScore(BASELINE_SCORE, HARDENED_SCORE);
-
-    scoreLabel.textContent = 'Hardened Security Posture Score';
-    vulnStat.textContent = '100% vulnerability remediation';
-    vulnStat.classList.add('active');
-
-    controlItems.forEach(function (item, index) {
-      if (prefersReducedMotion) {
-        item.classList.add('active');
-      } else {
-        setTimeout(function () {
-          item.classList.add('active');
-        }, 60 + index * 70);
-      }
-    });
-  }
-
-  function resetToBaseline() {
-    if (!isHardened || !postureBar || !scoreValue) return;
-    isHardened = false;
-
-    btnHarden.disabled = false;
-    btnReset.disabled = true;
-
-    postureBar.style.setProperty('--score', String(BASELINE_SCORE));
-    animateScore(HARDENED_SCORE, BASELINE_SCORE);
-
-    scoreLabel.textContent = 'Baseline Security Posture Score';
-    vulnStat.textContent = 'Vulnerabilities present across 3 layers';
-    vulnStat.classList.remove('active');
-
-    controlItems.forEach(function (item) {
-      item.classList.remove('active');
-    });
-  }
-
-  function animateScore(from, to) {
-    if (prefersReducedMotion) {
-      scoreValue.textContent = to.toFixed(2);
-      return;
+    function animateScore(from, to) {
+      if (reduceMotion) { scoreValue.textContent = to.toFixed(2); return; }
+      var t0 = performance.now();
+      (function frame(now) {
+        var t = Math.min((now - t0) / 1000, 1);
+        scoreValue.textContent = (from + (to - from) * (1 - Math.pow(1 - t, 3))).toFixed(2);
+        if (t < 1) requestAnimationFrame(frame);
+      })(t0);
     }
 
-    const duration = 1100;
-    const startTime = performance.now();
+    function setState(hardened) {
+      explorer.setAttribute('data-state', hardened ? 'hardened' : 'baseline');
+      btnHarden.disabled = hardened;
+      btnReset.disabled = !hardened;
+      meter.style.setProperty('--v', hardened ? HARDENED : BASELINE);
+      animateScore(hardened ? BASELINE : HARDENED, hardened ? HARDENED : BASELINE);
+      scoreLabel.textContent = hardened ? 'Hardened Security Posture Score' : 'Baseline Security Posture Score';
+      vulnStat.textContent = hardened ? '100% vulnerability remediation' : 'Vulnerabilities present across 3 layers';
 
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = from + (to - from) * eased;
-      scoreValue.textContent = current.toFixed(2);
-
-      if (progress < 1) {
-        window.requestAnimationFrame(update);
-      }
+      timers.forEach(clearTimeout);
+      timers = [];
+      ctrls.forEach(function (li, i) {
+        if (hardened && !reduceMotion) {
+          timers.push(setTimeout(function () { li.classList.add('is-on'); }, 70 * i));
+        } else {
+          li.classList.toggle('is-on', hardened);
+        }
+      });
+      (hardened ? btnReset : btnHarden).focus();
     }
 
-    window.requestAnimationFrame(update);
+    btnHarden.addEventListener('click', function () { setState(true); });
+    btnReset.addEventListener('click', function () { setState(false); });
   }
 
-  if (btnHarden) {
-    btnHarden.addEventListener('click', applyHardening);
-  }
+  // ---- Copy email ----
+  var copyBtn = document.getElementById('copy-btn');
+  var copyStatus = document.getElementById('copy-status');
 
-  if (btnReset) {
-    btnReset.addEventListener('click', resetToBaseline);
-  }
-
-  // ---- Copy to Clipboard ----
-  const btnCopy = document.getElementById('btn-copy');
-
-  function showCopied() {
-    btnCopy.textContent = 'Copied';
-    btnCopy.classList.add('copied');
+  function copied() {
+    copyBtn.classList.add('is-copied');
+    copyBtn.textContent = 'Copied';
+    if (copyStatus) copyStatus.textContent = 'Email address copied to clipboard';
     setTimeout(function () {
-      btnCopy.textContent = 'Copy';
-      btnCopy.classList.remove('copied');
+      copyBtn.classList.remove('is-copied');
+      copyBtn.textContent = 'Copy';
+      if (copyStatus) copyStatus.textContent = '';
     }, 2000);
   }
 
-  function fallbackCopy(email) {
-    const textarea = document.createElement('textarea');
-    textarea.value = email;
-    textarea.setAttribute('readonly', '');
-    textarea.style.position = 'fixed';
-    textarea.style.opacity = '0';
-    document.body.appendChild(textarea);
-    textarea.select();
-    try {
-      document.execCommand('copy');
-      showCopied();
-    } catch (e) {
-      // silently fail
-    }
-    document.body.removeChild(textarea);
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { if (document.execCommand('copy')) copied(); } catch (e) { /* give up quietly */ }
+    document.body.removeChild(ta);
   }
 
-  if (btnCopy) {
-    btnCopy.addEventListener('click', function () {
-      const email = btnCopy.getAttribute('data-email');
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(showCopied).catch(function () {
-          fallbackCopy(email);
-        });
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      var text = copyBtn.getAttribute('data-copy');
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(copied, function () { legacyCopy(text); });
       } else {
-        fallbackCopy(email);
+        legacyCopy(text);
       }
     });
   }
 
+  // ---- Highlighter ----
+  requestAnimationFrame(function () {
+    document.querySelectorAll('mark').forEach(function (m) { m.classList.add('is-lit'); });
+  });
 })();

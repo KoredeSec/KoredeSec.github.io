@@ -614,3 +614,6 @@ main { max-width: calc(var(--max) + 2 * var(--pad)); margin-inline: auto; paddin
   .tags { gap: 0.6rem 0.7rem; }
   .tags .tag { font-size: 0.75rem; padding: 0.5rem 0.75rem; }
 }
+
+/* Writing: blog posts listed above the Medium write-ups */
+.reports-gap { margin-top: clamp(2.5rem, 5vw, 3.5rem); }

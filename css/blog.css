@@ -1,0 +1,147 @@
+/* ============================================================
+   KoredeSec blog
+   Loaded after style.css on /blog/ pages. Reuses its tokens,
+   masthead, footer and tags; adds the post list and long-form
+   reading styles.
+   ============================================================ */
+
+/* ---------- Blog index ---------- */
+.blog-index { padding-top: clamp(2.5rem, 6vw, 5rem); }
+.blog-index .sec-head h1 {
+  font-family: var(--display); font-weight: 900; font-stretch: 125%; text-transform: uppercase;
+  font-size: clamp(2.6rem, 1rem + 7vw, 7rem); line-height: 0.82; letter-spacing: -0.04em;
+}
+.blog-index .sec-head h1::after {
+  content: ""; display: inline-block; width: 0.32em; height: 0.32em; margin-left: 0.12em;
+  background: var(--accent, var(--sky)); vertical-align: baseline;
+}
+.blog-index .sec-note .ink-link { font-size: inherit; }
+
+.post-list a {
+  position: relative; display: grid; grid-template-columns: 8rem minmax(0, 1fr) auto; gap: 1.5rem; align-items: baseline;
+  padding: 1.4rem 0.25rem; border-bottom: 1px solid var(--rule-soft); isolation: isolate;
+}
+.post-list a::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--sky);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.35s var(--ease);
+}
+.post-list li:nth-child(4n + 2) a::before { background: var(--mint); }
+.post-list li:nth-child(4n + 3) a::before { background: var(--sun); }
+.post-list li:nth-child(4n + 4) a::before { background: var(--coral); }
+.post-list a:hover::before, .post-list a:focus-visible::before { transform: scaleX(1); }
+.post-list a:hover, .post-list a:hover .pl-date, .post-list a:hover .pl-dek, .post-list a:hover .pl-read { color: #111; }
+.post-list li:nth-child(4n + 4) a:hover,
+.post-list li:nth-child(4n + 4) a:hover .pl-date,
+.post-list li:nth-child(4n + 4) a:hover .pl-dek,
+.post-list li:nth-child(4n + 4) a:hover .pl-read { color: #fff; }
+
+.pl-date, .pl-read { font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+.pl-main { display: grid; gap: 0.35rem; }
+.pl-title {
+  font-family: var(--display); font-weight: 800; font-stretch: 112%; letter-spacing: -0.02em;
+  font-size: clamp(1.35rem, 1rem + 1.2vw, 1.9rem); line-height: 1.05;
+}
+.pl-dek { color: var(--ink-2); max-width: 60ch; }
+.blog-empty { color: var(--ink-2); font-style: italic; }
+
+@media (max-width: 760px) {
+  .post-list a { grid-template-columns: 1fr; gap: 0.4rem; }
+  .pl-read { display: none; }
+}
+
+/* ---------- Post ---------- */
+.post { --col: 42rem; padding-top: clamp(2rem, 5vw, 4rem); }
+.post-head, .prose, .post-foot { max-width: var(--col); margin-inline: auto; }
+
+.post-back { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.75rem; }
+.post-back a { color: var(--muted); border-bottom: 1px solid transparent; }
+.post-back a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+.post-title {
+  font-family: var(--display); font-weight: 900; font-stretch: 125%; text-transform: uppercase;
+  font-size: clamp(2.6rem, 1.2rem + 6vw, 5.5rem); line-height: 0.86; letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.post-title::after {
+  content: ""; display: inline-block; width: 0.28em; height: 0.28em; margin-left: 0.1em; background: var(--coral);
+}
+.post-dek { font-style: italic; font-size: clamp(1.2rem, 1rem + 0.6vw, 1.45rem); color: var(--ink-2); margin-top: 1.25rem; }
+.post-meta {
+  display: flex; flex-wrap: wrap; gap: 0.25rem 0.6rem; align-items: baseline;
+  font-size: 0.75rem; letter-spacing: 0.04em; color: var(--muted);
+  margin-top: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1.5px solid var(--rule);
+}
+.post-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.post-tags .tag { font-size: 0.6875rem; letter-spacing: 0.06em; padding: 0.35rem 0.55rem; }
+.post-tags .tag:nth-child(odd) { transform: rotate(-2deg); }
+.post-tags .tag:nth-child(even) { transform: rotate(1.5deg); }
+
+/* ---------- Prose ---------- */
+.prose { padding-top: clamp(1.75rem, 4vw, 2.5rem); font-size: 1.1875rem; line-height: 1.7; color: var(--ink); }
+.prose > * + * { margin-top: 1.3em; }
+.prose h2, .prose h3 {
+  font-family: var(--display); font-weight: 800; font-stretch: 112%; letter-spacing: -0.02em; line-height: 1.1;
+  margin-top: 2.2em;
+}
+.prose h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem); }
+.prose h3 { font-size: 1.35rem; }
+.prose a { border-bottom: 1.5px solid var(--sky); transition: background-color 0.15s; }
+.prose a:hover { background: var(--sky); color: #111; }
+.prose strong { font-weight: 600; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose ul { list-style: square; }
+.prose ol { list-style: decimal; }
+.prose li + li { margin-top: 0.4em; }
+.prose li::marker { color: var(--muted); }
+.prose hr { border: 0; border-top: 1.5px solid var(--rule); margin-block: 2.5em; }
+
+.prose blockquote {
+  margin-block: 2.2em; padding: 0.2em 0 0.2em 1.25em; border-left: 6px solid var(--coral);
+  font-style: italic; font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.6rem); line-height: 1.4;
+}
+.prose blockquote p + p { margin-top: 0.6em; }
+.prose blockquote cite {
+  display: block; font-family: var(--mono); font-style: normal; font-size: 0.75rem;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+.prose blockquote cite::before { content: "— "; }
+
+.prose code { font-family: var(--mono); font-size: 0.85em; background: var(--paper-2); padding: 0.1em 0.35em; }
+.prose pre {
+  font-family: var(--mono); font-size: 0.875rem; line-height: 1.55; overflow-x: auto;
+  background: var(--paper-2); border: 1.5px solid var(--rule); padding: 1rem 1.15rem;
+}
+.prose pre code { background: none; padding: 0; font-size: inherit; }
+.prose .highlight .c, .prose .highlight .c1, .prose .highlight .cm { color: var(--muted); font-style: italic; }
+.prose .highlight .k, .prose .highlight .kd, .prose .highlight .kn { color: var(--coral); }
+.prose .highlight .s, .prose .highlight .s1, .prose .highlight .s2 { color: var(--ok); }
+.prose .highlight .nf, .prose .highlight .nb { color: #1a8fb8; }
+
+/* Figures: photos, GIFs and looping clips */
+.fig { margin-block: 2.25em; }
+.fig img, .fig video { display: block; width: 100%; height: auto; margin-inline: auto; border: 1.5px solid var(--rule); background: var(--paper-2); }
+.fig video { max-width: 34rem; }
+.fig-tall img { width: auto; max-width: 100%; max-height: min(80vh, 46rem); }
+.fig-wide { margin-inline: calc(50% - min(50vw - var(--pad), 34rem)); }
+.fig figcaption { font-size: 0.75rem; color: var(--muted); text-align: center; margin-top: 0.7rem; line-height: 1.45; }
+
+/* ---------- Post footer ---------- */
+.post-foot { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: 1.5rem; border-top: 1.5px solid var(--rule); }
+.post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pn { display: grid; gap: 0.35rem; padding: 1rem; border: 1.5px solid var(--rule); transition: background-color 0.15s, color 0.15s; }
+.pn .mono { font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.pn-title { font-family: var(--display); font-weight: 800; font-stretch: 112%; font-size: 1.15rem; line-height: 1.15; }
+.pn-next { text-align: right; grid-column: 2; }
+.pn:hover { background: var(--sun); color: #111; }
+.pn:hover .mono { color: #111; }
+.post-all { margin-top: 1.5rem; }
+@media (max-width: 560px) {
+  .post-nav { grid-template-columns: 1fr; }
+  .pn-next { grid-column: 1; }
+}
+
+.footer-links { display: inline-flex; gap: 1.25rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .post-list a::before { transition: none; }
+}

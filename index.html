@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 
@@ -421,8 +424,20 @@
     <section class="section" id="writing" aria-labelledby="writing-title">
       <header class="sec-head">
         <h2 id="writing-title" style="--accent: var(--sky)">Writing</h2>
-        <p class="sec-note mono">Verified write-ups published on Medium. Each one is a lab I actually ran, documented end to end.</p>
+        <p class="sec-note mono">Essays on the blog, and lab write-ups on Medium. Each lab is one I actually ran, documented end to end.</p>
       </header>
+
+      {%- if site.posts.size > 0 %}
+      <p class="label mono">From the blog</p>
+      <ol class="reports reports-blog" role="list">
+        {%- for post in site.posts limit: 3 %}
+        <li><a href="{{ post.url }}">
+            <span class="r-title">{{ post.title }}</span><span class="r-pub mono">{{ post.date | date: "%b %Y" }}</span></a></li>
+        {%- endfor %}
+      </ol>
+      <p class="reports-cta"><a class="ink-link" href="/blog/">All blog posts →</a></p>
+      <p class="label mono reports-gap">Lab write-ups on Medium</p>
+      {%- endif %}
 
       <ol class="reports" role="list">
         <li><a href="https://medium.com/@KoredeSec/your-azure-environment-has-no-guardrails-heres-how-to-fix-that-9536a6e90c29" target="_blank" rel="noopener noreferrer">

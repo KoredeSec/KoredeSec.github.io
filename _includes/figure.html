@@ -1,0 +1,17 @@
+{%- comment -%}
+  A photo, GIF or looping clip with an optional caption.
+    {% include figure.html src="/assets/blog/my-post/photo.jpg" alt="What the image shows" caption="Optional caption" %}
+  .mp4 files play like a GIF: muted, looping, no controls (much smaller than the same .gif).
+  Add wide=true to let a landscape image run wider than the text column.
+{%- endcomment -%}
+{%- assign ext = include.src | split: "." | last | downcase -%}
+<figure class="fig{% if include.wide %} fig-wide{% endif %}{% if include.tall %} fig-tall{% endif %}">
+  {%- if ext == "mp4" or ext == "webm" %}
+  <video src="{{ include.src | relative_url }}" autoplay loop muted playsinline preload="metadata"{% if include.alt %} aria-label="{{ include.alt | escape }}"{% endif %}></video>
+  {%- else %}
+  <img src="{{ include.src | relative_url }}" alt="{{ include.alt | default: '' | escape }}" loading="lazy">
+  {%- endif %}
+  {%- if include.caption %}
+  <figcaption class="mono">{{ include.caption }}</figcaption>
+  {%- endif %}
+</figure>

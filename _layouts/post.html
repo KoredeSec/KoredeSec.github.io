@@ -1,0 +1,45 @@
+---
+layout: base
+---
+{%- assign words = content | strip_html | number_of_words %}
+{%- assign minutes = words | divided_by: 220 %}
+{%- if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+<article class="post">
+  <header class="post-head">
+    <p class="post-back mono"><a href="/blog/">← All posts</a></p>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {%- if page.description %}
+    <p class="post-dek">{{ page.description }}</p>
+    {%- endif %}
+    <p class="post-meta mono">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <span aria-hidden="true">·</span> <span>{{ minutes }} min read</span>
+      <span aria-hidden="true">·</span> <span>{{ page.author | default: site.author }}</span>
+    </p>
+    {%- if page.tags.size > 0 %}
+    <ul class="post-tags" role="list" aria-label="Tags">
+      {%- for tag in page.tags %}
+      <li class="tag {% cycle 'tag-sky', 'tag-mint', 'tag-sun', 'tag-coral' %}">{{ tag }}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </header>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  <footer class="post-foot">
+    <nav class="post-nav" aria-label="More posts">
+      {%- if page.previous %}
+      <a class="pn pn-prev" href="{{ page.previous.url }}"><span class="mono">← Older</span><span class="pn-title">{{ page.previous.title }}</span></a>
+      {%- else %}
+      <span></span>
+      {%- endif %}
+      {%- if page.next %}
+      <a class="pn pn-next" href="{{ page.next.url }}"><span class="mono">Newer →</span><span class="pn-title">{{ page.next.title }}</span></a>
+      {%- endif %}
+    </nav>
+    <p class="post-all"><a class="ink-link" href="/blog/">All posts</a></p>
+  </footer>
+</article>

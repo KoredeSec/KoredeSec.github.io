@@ -1,0 +1,31 @@
+# Jekyll config for the blog. GitHub Pages builds this automatically on push.
+# Plain .html files without front matter (redirect pages, 404) are copied as-is;
+# only files that start with a --- block are processed.
+
+title: KoredeSec
+author: Ibrahim Yusuf
+description: Essays and notes from Ibrahim Yusuf (KoredeSec), security engineer.
+url: https://koredesec.me
+baseurl: ""
+
+permalink: /blog/:title/
+timezone: Africa/Lagos
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+highlighter: rouge
+
+plugins:
+  - jekyll-feed
+
+feed:
+  path: blog/feed.xml
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post

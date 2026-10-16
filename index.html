@@ -39,7 +39,7 @@
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "Osun State University" },
     "sameAs": [
       "https://github.com/KoredeSec",
-      "https://www.linkedin.com/in/ibrahim-yusuf-38a267301",
+      "https://www.linkedin.com/in/ibrahim-yusuf-gmcpn-38a267301",
       "https://x.com/KoredeSec",
       "https://medium.com/@KoredeSec",
       "https://linktr.ee/KoredeSec"
@@ -110,7 +110,7 @@
           <p class="hero-sub">Security Engineer specializing in cloud security, detection engineering, and DevSecOps.</p>
           <p class="hero-links mono">
             <a href="https://github.com/KoredeSec" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://www.linkedin.com/in/ibrahim-yusuf-gmcpn-38a267301" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
             <a href="https://x.com/KoredeSec" target="_blank" rel="noopener noreferrer">X ↗</a>
             <a href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium ↗</a>
             <a href="https://linktr.ee/KoredeSec" target="_blank" rel="noopener noreferrer">Linktree ↗</a>
@@ -171,22 +171,37 @@
           </div>
 
           <div class="inst-block">
-            <ol class="ctrls" role="list">
-              <li><b>C01</b> Input validation</li>
-              <li><b>C02</b> Output filtering</li>
-              <li><b>C03</b> Context separation</li>
-              <li><b>C04</b> IAM hardening</li>
-              <li><b>C05</b> Data encryption</li>
-              <li><b>C06</b> Network segmentation</li>
-              <li><b>C07</b> Rate limiting</li>
-              <li><b>C08</b> Vector store ACL</li>
-              <li><b>C09</b> Secrets management</li>
-              <li><b>C10</b> Auth hardening</li>
-              <li><b>C11</b> Supply chain</li>
-              <li><b>C12</b> Anomaly detection</li>
-              <li><b>C13</b> Citations</li>
-              <li><b>C14</b> Audit</li>
-            </ol>
+            <div class="ctrl-groups">
+              <div class="ctrl-group">
+                <h4 class="ctrl-layer mono">LLM Layer</h4>
+                <ul class="ctrls" role="list">
+                  <li title="Blocked adversarial prompts attempting to bypass system instructions">Prompt injection filtering</li>
+                  <li title="Prevented extraction of training data through crafted queries">Data leakage prevention</li>
+                  <li title="Added rate limiting and output length restrictions">Output sanitization</li>
+                  <li title="Validated model inputs against defined schema">Input validation rules</li>
+                  <li title="Restricted model to approved knowledge domains">Scope restriction</li>
+                </ul>
+              </div>
+              <div class="ctrl-group">
+                <h4 class="ctrl-layer mono">RAG Layer</h4>
+                <ul class="ctrls" role="list">
+                  <li title="Enforced document-level access control on retrievals">Retrieval access control</li>
+                  <li title="Validated retrieved context before injection into prompts">Context validation</li>
+                  <li title="Encrypted document store at rest and in transit">Knowledge base encryption</li>
+                  <li title="Logged all retrieval queries for audit purposes">Query audit logging</li>
+                </ul>
+              </div>
+              <div class="ctrl-group">
+                <h4 class="ctrl-layer mono">Cloud Layer</h4>
+                <ul class="ctrls" role="list">
+                  <li title="Applied least-privilege IAM policies to all service roles">IAM least privilege</li>
+                  <li title="Enabled CloudTrail logging across all regions">CloudTrail monitoring</li>
+                  <li title="Restricted API access to VPC endpoints only">Network segmentation</li>
+                  <li title="Rotated credentials on automated schedule">Secrets rotation</li>
+                  <li title="Configured automated alerting for security events">Incident alerting</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div class="inst-actions">
@@ -447,7 +462,7 @@
         <p class="contact-links mono">
           <a href="https://github.com/KoredeSec" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           <a href="https://medium.com/@KoredeSec" target="_blank" rel="noopener noreferrer">Medium ↗</a>
-          <a href="https://www.linkedin.com/in/ibrahim-yusuf-38a267301" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a href="https://www.linkedin.com/in/ibrahim-yusuf-gmcpn-38a267301" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
           <a href="https://x.com/KoredeSec" target="_blank" rel="noopener noreferrer">X ↗</a>
           <a href="https://linktr.ee/KoredeSec" target="_blank" rel="noopener noreferrer">Linktree ↗</a>
         </p>

@@ -181,7 +181,7 @@ mark {
 }
 .menu-btn { display: none; text-transform: uppercase; letter-spacing: 0.06em; border: 1.5px solid var(--ink); padding: 0.35rem 0.7rem; }
 
-@media (max-width: 900px) {
+@media (max-width: 560px) {
   .menu-btn { display: inline-block; }
   .nav {
     position: fixed; inset: var(--mast-h) 0 0 0; margin: 0; z-index: 99;
@@ -325,17 +325,22 @@ main { max-width: calc(var(--max) + 2 * var(--pad)); margin-inline: auto; paddin
 
 .inst-block { padding: 0.5rem 1rem 1rem; }
 .ctrls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.25rem; }
-.ctrls li {
-  position: relative; padding: 0.45rem 1.2rem 0.45rem 3.1rem; border-top: 1px dashed var(--rule-soft);
-  font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); line-height: 1.35;
-  transition: color 0.3s;
+.ctrl-group + .ctrl-group { margin-top: 0.5rem; }
+.ctrl-layer {
+  font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.5rem 0 0.4rem; color: var(--ink);
 }
-.ctrls b {
-  position: absolute; left: 0; top: 0.45rem; font-weight: 600; font-size: 0.6875rem; padding: 0 0.3rem;
-  border: 1px solid currentColor; line-height: 1.5;
+.ctrls li {
+  position: relative; padding: 0.45rem 1.2rem 0.45rem 1.1rem; border-top: 1px dashed var(--rule-soft);
+  font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); line-height: 1.35;
+  transition: color 0.3s; cursor: help;
+}
+.ctrls li::before {
+  content: ""; position: absolute; left: 0; top: 0.8rem; width: 0.45rem; height: 0.45rem;
+  border: 1px solid currentColor; transition: background 0.3s, border-color 0.3s;
 }
 .ctrls li.is-on { color: var(--ink); }
-.ctrls li.is-on b { background: var(--ok); color: var(--paper); border-color: var(--ok); }
+.ctrls li.is-on::before { background: var(--ok); border-color: var(--ok); }
 .ctrls li.is-on::after { content: "✓"; position: absolute; right: 0; top: 0.4rem; color: var(--ok); font-weight: 600; }
 
 .inst-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 1rem; border-top: 1.5px solid var(--rule); }

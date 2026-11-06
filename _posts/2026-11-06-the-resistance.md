@@ -3,6 +3,7 @@ title: The Resistance
 description: On ambition, relationships, and the person I'm becoming.
 date: 2026-11-06 12:00:00 +0100
 tags: [Life, Relationships]
+image: /assets/blog/the-resistance/share.jpg
 ---
 
 I've had Drake's *The Resistance* on repeat for years without really listening to it. It was just a song I liked.

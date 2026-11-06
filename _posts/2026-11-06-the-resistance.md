@@ -67,7 +67,7 @@ I'm still learning that.
 
 ## The resistance
 
-> "The other day Lissa told me she missed the old me<br>
+> "The other day Alyssa told me she missed the old me<br>
 > Which made me question when I went missing"
 >
 > <cite>Drake, The Resistance</cite>
